@@ -15,37 +15,34 @@ namespace console_adventure.Models
 
 
       // NOTE Create all rooms
-      Room produce = new Room("Produce Section", @"
-                 \|/
-                 AXA
-                /XXX\
-                \XXX/
-                 `^'
-            Plenty of Fruit and Veggies, wonder why no on is stockpiling these yet");
-      Room electronics = new Room("Electronics", "Lots of stuff still here, yet no webcams in sight.");
-      Room frozenFoods = new Room("Frozen Foods", "Mostly empty shelves though the vegan chocolate hummus is still in stock for some reason");
-      EndRoom checkout = new EndRoom("Checkout", "A stressed minimum wage employee stares out you with a thousand yard stare, he has seen too much these last few weeks", true, "You breeze through the checkout with your new found wealth!");
-      EndRoom toiletPaperIsle = new EndRoom("Toiletries", "A hoarde of people are racing through this aisle with their weapons out", false, "You are trampled under foot and your name is lost to history");
+      Room bed = new Room("Your Bed", @"You've awoken in your comfy bed!");
+      Room bedroomCenter = new Room("Bedroom Center", "You are in the center of your bedroom.");
+      Room yourDesk = new Room("Your Desk", "You see your trusty desktop, a small stack of papers, and some other odds and ends.");
+      Room garage = new Room("Your Garage", "Your garage, in it is your reliable car!");
+      Room yourDresser = new Room("Your Dresser", "You are standing in front of your dresser. It is full of clean pants!");
+      EndRoom car = new EndRoom("Your Trusty Car!", "You put in your keys and start the car!", true, "You drive your car to work on time!");
 
       // NOTE Create all Items
-      Item tp = new Item("Toilet Paper", "A Single Roll of precious paper, it must have fallen from a pack");
+      Item pants = new Item("pants", "Your best work pants.");
+      Item carKeys = new Item("keys", "The keys to your trusty car!");
 
       // NOTE Make Room Relationships
-      produce.Exits.Add("east", electronics);
-      electronics.Exits.Add("west", produce);
-      electronics.Exits.Add("north", frozenFoods);
-      electronics.Exits.Add("east", toiletPaperIsle);
-      frozenFoods.Exits.Add("south", electronics);
-
-      frozenFoods.AddLockedRoom(tp, "west", checkout);
-      checkout.Exits.Add("east", frozenFoods);
-
+      bed.Exits.Add("east", bedroomCenter);
+      bedroomCenter.Exits.Add("west", bed);
+      bedroomCenter.Exits.Add("north", yourDesk);
+      yourDesk.Exits.Add("south", bedroomCenter);
+      bedroomCenter.AddLockedRoom(pants, "east", garage);
+      garage.Exits.Add("west", garage);
+      bedroomCenter.Exits.Add("south", yourDresser);
+      yourDresser.Exits.Add("north", bedroomCenter);
+      garage.AddLockedRoom(carKeys, "east", car);
 
       // NOTE put Items in Rooms
-      electronics.Items.Add(tp);
+      yourDresser.Items.Add(pants);
+      yourDesk.Items.Add(carKeys);
 
 
-      CurrentRoom = produce;
+      CurrentRoom = bed;
     }
   }
 }

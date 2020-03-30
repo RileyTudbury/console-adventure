@@ -1,6 +1,6 @@
 using System;
-using System.Threading;
 using console_adventure.Interfaces;
+using console_adventure.Models;
 using console_adventure.Services;
 
 namespace console_adventure.Controllers
@@ -12,15 +12,10 @@ namespace console_adventure.Controllers
     public void Run()
     {
       Console.WriteLine("Hello there what is your name?");
-      // NOTE Gets string from readline and passes is as the player name
       _gs = new GameService(Console.ReadLine());
-      string greeting = "Welcome to MarkMart, you are here to get some TP, good luck!";
-      foreach (char letter in greeting)
-      {
-        Console.Write(letter);
-        //Thread.Sleep(100);
-      }
-      Console.WriteLine();
+      Utils.WinNoise();
+      string greeting = "You've woken up 10 minutes before you need to leave for work! You need to find your pants and car keys to make it on time!";
+      Console.WriteLine(greeting);
       Print();
       while (_running)
       {
@@ -64,8 +59,12 @@ namespace console_adventure.Controllers
         case "use":
           _gs.Use(option);
           break;
+        case "help":
+          _gs.Help();
+          break;
         default:
           _gs.Messages.Add("Not a recognized command");
+          _gs.Help();
           _gs.Look();
           break;
       }

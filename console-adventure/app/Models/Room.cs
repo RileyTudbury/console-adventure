@@ -23,9 +23,15 @@ namespace console_adventure.Models
       {
         Exits.Add(LockedExits[item].Key, LockedExits[item].Value);
         LockedExits.Remove(item);
-        if (item.Name.ToLower() == "toilet paper")
+        if (item.Name.ToLower() == "pants")
         {
-          return "You hoist the precious paper in the air and a checkstand opens as if by magic";
+          Utils.WinNoise();
+          return "You put on your pants and are allowed into the garage!";
+        }
+        if (item.Name.ToLower() == "keys")
+        {
+          Utils.WinNoise();
+          return "You unlocked your car!";
         }
         return "You have unlocked a room";
       }
