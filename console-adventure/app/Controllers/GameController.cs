@@ -54,6 +54,7 @@ namespace console_adventure.Controllers
           _running = _gs.Go(option);
           break;
         case "take":
+        case "grab":
           _gs.Take(option);
           break;
         case "use":
