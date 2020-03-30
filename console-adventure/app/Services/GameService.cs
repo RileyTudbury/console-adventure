@@ -109,6 +109,10 @@ namespace console_adventure.Services
       IItem found = _game.CurrentRoom.Items.Find(i => i.Name.ToLower() == itemName);
       if (found != null)
       {
+        if (found.Name == "keys")
+        {
+          _game.CurrentRoom.Description = "You see your trusty desktop PC, a small stack of papers, and other odds and ends.";
+        }
         _game.CurrentPlayer.Inventory.Add(found);
         _game.CurrentRoom.Items.Remove(found);
         Utils.WinNoise();
