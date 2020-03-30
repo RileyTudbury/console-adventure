@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using console_adventure.Interfaces;
 using console_adventure.Models;
 
@@ -112,7 +111,7 @@ namespace console_adventure.Services
       {
         if (found.Name == "keys")
         {
-          _game.CurrentRoom.Description = "You see your trusty desktop PC, a small stack of papers, and other odds and ends.";
+          _game.CurrentRoom.Description = "You see your trusty desktop PC, a small stack of papers, and other odds and ends. The center of your bedroom is to the South.";
         }
         _game.CurrentPlayer.Inventory.Add(found);
         _game.CurrentRoom.Items.Remove(found);
