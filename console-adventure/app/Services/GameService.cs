@@ -40,6 +40,7 @@ namespace console_adventure.Services
         EndRoom end = _game.CurrentRoom as EndRoom;
         if (end != null)
         {
+          Utils.WinNoise();
           Messages.Add(end.Narrative);
           return false;
         }
